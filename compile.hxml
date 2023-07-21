@@ -1,0 +1,4 @@
+--main Main
+--library hxdiscord
+--macro include("commands")
+--cpp builds/cpp
