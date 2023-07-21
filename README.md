@@ -12,3 +12,7 @@ you can change the prefix on [BotConfig.hx](https://github.com/bctix/haxeDiscord
 Commands don't have any exact case requirements, for example, if in discord someone says `"-!PinG"`. it will run [Ping.hx](https://github.com/bctix/haxeDiscordbotTemplate/blob/main/commands/Ping.hx)
 
 When building (haxe .\compile.hxml), your bot will be found in `builds\cpp\Main.exe`.
+
+## Planned Additions/Changes
+- [ ] Automatically create slash commands
+- [ ] Add more into BotConfig.hx (about, pfp, status)
