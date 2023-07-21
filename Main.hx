@@ -1,5 +1,6 @@
 package;
 
+import utils.BotConfig;
 import utils.StringUtils;
 import api.SecretApiStuff;
 import hxdiscord.DiscordClient;
@@ -28,8 +29,8 @@ class Main
     }
 
 	public static function onMessage(m:Message) {
-        if(!m.content.contains("-=")) return;
-        var noPrefix = m.content.replace("-=","");
+        if(!m.content.contains(BotConfig.prefix)) return;
+        var noPrefix = m.content.replace(BotConfig.prefix,"");
         var noArgs = noPrefix.split(' ')[0];
         trace('Looking for: "commands.${StringUtils.processToClass(noArgs)}"'); // just a trace showing the command location
         if(Type.resolveClass('commands.${StringUtils.processToClass(noArgs)}') == null) // resolveClass looks for a class from a string, and returns said class.
