@@ -1,10 +1,6 @@
 package;
 
 import utils.StringUtils;
-
-// dont remove! It may say its unused but it's not!
-import commands.*;
-
 import api.SecretApiStuff;
 import hxdiscord.DiscordClient;
 import hxdiscord.utils.Intents;
