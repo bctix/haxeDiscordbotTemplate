@@ -34,9 +34,16 @@ class Main
         var noArgs = noPrefix.split(' ')[0];
         trace('Looking for: "commands.${StringUtils.processToClass(noArgs)}"'); // just a trace showing the command location
         if(Type.resolveClass('commands.${StringUtils.processToClass(noArgs)}') == null) // resolveClass looks for a class from a string, and returns said class.
-            m.reply({content: 'It looks like that command doesnt exist!\nOr if it does, then it might be broken... :('});
-        else
-            Type.createInstance(Type.resolveClass('commands.${StringUtils.processToClass(noArgs)}'),[m]); // createInstance creates a new instance of the class
+            m.reply({content: 'It looks like that command doesnt exist!'});
+        else{
+            try {
+                Type.createInstance(Type.resolveClass('commands.${StringUtils.processToClass(noArgs)}'),[m]); // createInstance creates a new instance of the class
+            } catch(e) {
+                m.reply({content: 'Uh oh. looks like something went wrong.. :('});
+            }
+            
+        }
+            
     }
 
 	public static function onReady() {
