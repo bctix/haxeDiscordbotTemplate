@@ -1,4 +1,5 @@
 --main Main
 --library hxdiscord
+--library compiletime
 --macro include("commands")
 --cpp builds/cpp

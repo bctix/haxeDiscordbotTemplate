@@ -17,7 +17,6 @@ class Main
 	static function main()
 	{
         startTime = Date.now();
-
 		discordBot = new DiscordClient(SecretApiStuff.discordBotApi, [Intents.ALL], false);
 		discordBot.onReady = onReady;
 		discordBot.onMessageCreate = onMessage;
@@ -26,6 +25,8 @@ class Main
 
     public static function onInteraction(i:Interaction) {
         trace('there was an interaction: '+i.name);
+        // its not working rn :')
+        Type.createInstance(Type.resolveClass('interactions.${StringUtils.processToClass(i.name)}'),[i]);
     }
 
 	public static function onMessage(m:Message) {
@@ -47,6 +48,7 @@ class Main
     }
 
 	public static function onReady() {
+        // how long it took to start
         trace(Date.now().getTime()-startTime.getTime());
 	}
 }
