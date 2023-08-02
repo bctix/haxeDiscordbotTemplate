@@ -2,4 +2,5 @@
 --library hxdiscord
 --library compiletime
 --macro include("commands")
+--macro include("interactions")
 --cpp builds/cpp

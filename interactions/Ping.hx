@@ -1,23 +1,25 @@
-package commands;
+package interactions;
 
+import hxdiscord.types.CommandType;
 import hxdiscord.types.Interaction;
 import hxdiscord.types.structTypes.ApplicationCommand.ApplicationCommandOption;
-import interfaces.ISlashCommand;
 
-class Ping implements ISlashCommand {
-    public var description:String = 'Ping pong! Ping... pong!';
-	public var type:Int = 1;
-    public var options:Array<ApplicationCommandOption> = [
+class Ping {
+    public static var description:String = 'Ping pong! Ping... pong!';
+	public static var type:CommandType = 1;
+    public static var options:Array<ApplicationCommandOption> = [
         {
-            name: "do reply", // name lol
-            description: "Makes the ping command reply too!", // description lol
-            type: 3, // 3 = Bool (true, false)
-            required: true // required
+            name: "show", // name lol
+            description: "Toggle weather the reply with show to otheres or not!", // description lol
+            type: 5, // 5 = Bool (true, false)
+            required: true
         }
     ];
 	
-    public function new(m:Interaction)
+    public function new(i:Interaction)
     {
-        m.reply({content: "Pong!"}, true);
+        var show = false;
+        if(i.dataOptions.value == 'true') show = true;
+        i.reply({content: "Pong!"}, !show);
     }
 }

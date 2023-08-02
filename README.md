@@ -18,5 +18,7 @@ Commands don't have any exact case requirements, for example, if in discord some
 When building (haxe .\compile.hxml), your bot will be found in `builds\cpp\Main.exe`.
 
 ## Planned Additions/Changes
-- [ ] Automatically create slash commands
-- [ ] Add more into BotConfig.hx (status)
+- [x] Automatically create slash commands
+- [ ] Add more into BotConfig.hx
+    - [x] status/presence
+- [ ] Hot reloading ( might not happen )

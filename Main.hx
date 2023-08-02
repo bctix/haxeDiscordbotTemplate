@@ -1,5 +1,7 @@
 package;
 
+import hxdiscord.types.structTypes.ApplicationCommand.ApplicationCommandOption;
+import interfaces.ISlashCommand;
 import utils.BotConfig;
 import utils.StringUtils;
 import api.SecretApiStuff;
@@ -21,11 +23,12 @@ class Main
 		discordBot.onReady = onReady;
 		discordBot.onMessageCreate = onMessage;
         discordBot.onInteractionCreate = onInteraction;
+
+       
 	}
 
     public static function onInteraction(i:Interaction) {
-        trace('there was an interaction: '+i.name);
-        // its not working rn :')
+        trace('Looking for: "interactions.${StringUtils.processToClass(i.name)}"');
         Type.createInstance(Type.resolveClass('interactions.${StringUtils.processToClass(i.name)}'),[i]);
     }
 
@@ -50,5 +53,32 @@ class Main
 	public static function onReady() {
         // how long it took to start
         trace(Date.now().getTime()-startTime.getTime());
+        var interactions = CompileTime.getAllClasses('interactions',false,null);
+        var commands:Array<ApplicationCommand> = [];
+        for(i in interactions)
+        {
+            var daCommand:ApplicationCommand = new ApplicationCommand();
+            daCommand.setName(Type.getClassName(i).replace('interactions.','').toLowerCase());
+            if(Reflect.getProperty(i,'description') != null)
+                daCommand.setDescription(Reflect.getProperty(i,'description'));
+            else
+                trace('Description not found! Not adding command');
+
+            if(Reflect.getProperty(i,'options') != null)
+            {
+                var options:Array<ApplicationCommandOption> = Reflect.getProperty(i,'options');
+                for(i in options)
+                {
+                    trace(i);
+                    daCommand.addOption(i);
+                }
+            }
+            commands.push(daCommand);
+           
+        }
+        discordBot.setInteractionCommands(commands);
+
+
+        discordBot.changeStatus(BotConfig.status, BotConfig.presenceType, BotConfig.presenceText);
 	}
 }
