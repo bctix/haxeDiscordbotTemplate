@@ -2,10 +2,6 @@
 
 hello, I've been making a few bots on my own with hxDiscord and thought I should finally make some sort of template for these bots so I don't have to constantly rewrite it.
 
-## Disclaimer
-
-As of now (7/24/23, m/dd/yy), slash commands are not working.
-
 ## How it works
 The template already handles everything for running command files and such.
 
